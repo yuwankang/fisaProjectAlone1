@@ -1,6 +1,6 @@
 package resturantService;
 
-import lombok.Getter;
+
 import resturantDTO.RestaurantDTO;
 
 import java.util.ArrayList;
