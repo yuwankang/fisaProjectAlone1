@@ -31,7 +31,7 @@ public class RestaurantView {
             System.out.println("2. 나가기");
             System.out.print("원하는 옵션을 선택하세요: ");
             int option = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine();
 
             if (option == 1) {
                 System.out.print("원하시는 요리 종류를 선택하세요 (한식, 중식, 양식, 일식): ");
