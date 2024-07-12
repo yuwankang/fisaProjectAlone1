@@ -6,7 +6,7 @@ import resturantDTO.RestaurantDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+
 public class RestaurantService {
     private final List<RestaurantDTO> restaurants = new ArrayList<>();
 

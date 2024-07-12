@@ -1,10 +1,9 @@
 package restaurantView;
 
 import restaurantController.RestaurantController;
-
-
 import resturantDTO.RestaurantDTO;
 import resturantService.RestaurantService;
+
 
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +20,7 @@ public class RestaurantView {
         restaurantService.addRestaurant(new RestaurantDTO("한식집 2", "한식", "김치찌개", "된장찌개"));
         restaurantService.addRestaurant(new RestaurantDTO("양식집 2", "양식", "스테이크", "샐러드"));
         restaurantService.addRestaurant(new RestaurantDTO("중식집 2", "중식", "볶음밥", "군만두"));
-        restaurantService.addRestaurant(new RestaurantDTO("일식집 2", "일식", "스시", "튀김"));
+        restaurantService.addRestaurant(new RestaurantDTO("일식집 1", "일식", "스시", "튀김"));
         restaurantService.addRestaurant(new RestaurantDTO("일식집 2", "일식", "우동", "오코노미야끼"));
 
         Scanner scanner = new Scanner(System.in);
@@ -30,15 +29,26 @@ public class RestaurantView {
             System.out.println("1. 실행");
             System.out.println("2. 나가기");
             System.out.print("원하는 옵션을 선택하세요: ");
-            int option = scanner.nextInt();
-            scanner.nextLine();
+
+            int option;
+            try {
+                option = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("숫자를 입력하세요.");
+                scanner.nextLine(); // 입력 버퍼 비우기
+                continue;
+            }
 
             if (option == 1) {
                 System.out.print("원하시는 요리 종류를 선택하세요 (한식, 중식, 양식, 일식): ");
+                scanner.nextLine(); // 버퍼 비우기
                 String type = scanner.nextLine();
+
+                // 입력한 type에 해당하는 식당 목록 조회
                 List<RestaurantDTO> restaurants = restaurantController.getRestaurantsByType(type);
-                if (restaurants.isEmpty()) {
-                    System.out.println("없는 타입의 식당입니다.: " + type);
+
+                if (restaurants == null || restaurants.isEmpty()) {
+                    System.out.println("입력한 종류에 해당하는 식당이 없습니다.: " + type);
                 } else {
                     for (RestaurantDTO restaurant : restaurants) {
                         System.out.println("레스토랑: " + restaurant.getName());
@@ -51,7 +61,7 @@ public class RestaurantView {
             } else if (option == 2) {
                 break;
             } else {
-                System.out.println("없는 옵션입니다 다시 선택하세요.");
+                System.out.println("없는 옵션입니다. 다시 선택하세요.");
             }
         }
 
