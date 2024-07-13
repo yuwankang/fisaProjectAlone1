@@ -16,18 +16,15 @@ public class RestaurantView {
         RestaurantController controller = new RestaurantController(service);
 
         // 초기 데이터 입력
-        try {
-            service.add(new RestaurantDTO("양식집 1", "양식", "스파게티", 11000, "피자", 15000));
-            service.add(new RestaurantDTO("중식집 1", "중식", "짜장면", 7000, "탕수육", 25000));
-            service.add(new RestaurantDTO("한식집 1", "한식", "불고기", 12000, "비빔밥", 10000));
-            service.add(new RestaurantDTO("한식집 2", "한식", "김치찌개", 9700, "된장찌개", 8000));
-            service.add(new RestaurantDTO("양식집 2", "양식", "스테이크", 20000, "샐러드", 9000));
-            service.add(new RestaurantDTO("중식집 2", "중식", "볶음밥", 7000, "군만두", 6000));
-            service.add(new RestaurantDTO("일식집 1", "일식", "스시", 13000, "튀김", 6000));
-            service.add(new RestaurantDTO("일식집 2", "일식", "우동", 7000, "오코노미야끼", 10000));
-        } catch (IllegalArgumentException e) {
-            System.err.println("데이터 초기화 오류: " + e.getMessage());
-        }
+        service.add(new RestaurantDTO("양식집 1", "양식", "스파게티", 11000, "피자", 15000));
+        service.add(new RestaurantDTO("중식집 1", "중식", "짜장면", 7000, "탕수육", 25000));
+        service.add(new RestaurantDTO("한식집 1", "한식", "불고기", 12000, "비빔밥", 10000));
+        service.add(new RestaurantDTO("한식집 2", "한식", "김치찌개", 9700, "된장찌개", 8000));
+        service.add(new RestaurantDTO("양식집 2", "양식", "스테이크", 20000, "샐러드", 9000));
+        service.add(new RestaurantDTO("중식집 2", "중식", "볶음밥", 7000, "군만두", 6000));
+        service.add(new RestaurantDTO("일식집 1", "일식", "스시", 13000, "튀김", 6000));
+        service.add(new RestaurantDTO("일식집 2", "일식", "우동", 7000, "오코노미야끼", 10000));
+
 
         Scanner scanner = new Scanner(System.in);
 
