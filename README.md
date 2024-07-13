@@ -1,17 +1,32 @@
 ```
-miniProject
-└── src
-    ├── restaurantDTO
-    │   └── RestaurantDTO.java
-    ├── restaurantController
-    │   └── RestaurantController.java
-    ├── restaurantService
-    │   └── RestaurantService.java
-    └── restaurantView
-        └── RestaurantView.java
+ +---------------+        +-----------------------+        +----------------+
+ |               |        |                       |        |                |
+ |   Restaurant  | <----> |   RestaurantService   | <----> |   Restaurant   |
+ |     View      |        |                       |        |  Controller    |
+ |               |        |                       |        |                |
+ +---------------+        +-----------------------+        +----------------+
+        ^                             ^                            ^
+        |                             |                            |
+        |                             |                            |
+        v                             v                            v
+ +---------------+        +-----------------------+        +----------------+
+ |   초기 데이터    | -----> |  데이터 관리 및 조회      | -----> |  사용자 요청 처리  |
+ |  (View에 있음)  |        |      (서비스)          |        |     (컨트롤러)    |
+ +---------------+        +-----------------------+        +----------------+
+
 ```
-프로젝트 레스토랑 음식종류를 고르면 식당과 메뉴 2개를 알려주는 프로그램입니다.
+# 프로젝트 구조
+- 이 프로젝트는 MVC 패턴을 따르며, 데이터는 View에 하드코딩되어 있습니다.
 
-MVC 패턴으로 제작하였으며 데이터 값은 View에 있으며 음식 종류(한식, 중식)등을 입력하면 음식과 식당을 출력합니다.
+## 다이어그램 설명
+모델 (Model)
+RestaurantDTO: 레스토랑 데이터를 나타내는 클래스입니다.
 
-원하는 옵션을 선택하세요 부분에서 숫자 이외의 값을 입력시 NullPointerException 에러 발생 해결 하였습니다.
+## 뷰 (View)
+RestaurantView: 사용자와 상호작용하고 데이터를 입력받는 역할을 합니다. 이 클래스에 초기 데이터가 하드코딩되어 있습니다.
+
+## 컨트롤러 (Controller)
+RestaurantController: 사용자 요청을 처리하고, 서비스와 상호작용하여 데이터를 반환하는 역할을 합니다.
+
+## 서비스 (Service)
+RestaurantService: 비즈니스 로직을 포함하며, 데이터 관리와 조회 기능을 제공합니다.
