@@ -5,37 +5,58 @@ import resturantService.RestaurantService;
 
 import java.util.List;
 
+//RestaurantController 클래스는 사용자 입력을 처리하고 서비스 계층과 상호 작용합니다.
 public class RestaurantController {
-    // RestaurantService 인스턴스 선언
     private final RestaurantService service;
 
-    // 생성자: RestaurantService 객체를 받아서 service 필드를 초기화
     public RestaurantController(RestaurantService service) {
         this.service = service;
     }
 
-    //주어진 타입에 따라 레스토랑 목록을 반환하는 메서드
+    //식당 종류로 조회 요청 처리
     public List<RestaurantDTO> getByType(String type) {
         try {
-            // RestaurantService의 getByType 메서드 호출하여 레스토랑 목록 가져오기
             return service.getByType(type);
         } catch (IllegalArgumentException e) {
-            // 예외 발생 시 오류 메시지를 출력하고 빈 리스트를 반환
             System.err.println("오류: " + e.getMessage());
             return List.of();
         }
     }
 
-
-    // 주어진 이름에 따라 레스토랑을 반환하는 메서드
+    //식당 이름으로 조회 요청 처리
     public RestaurantDTO getByName(String name) {
         try {
-            // RestaurantService의 getByName 메서드 호출하여 레스토랑 가져오기
             return service.getByName(name);
         } catch (IllegalArgumentException e) {
-            // 예외 발생 시 오류 메시지를 출력하고 null을 반환
             System.err.println("오류: " + e.getMessage());
             return null;
+        }
+    }
+
+    // 새로운 식당 추가 요청 처리
+    public void addRestaurant(RestaurantDTO restaurant) {
+        try {
+            service.add(restaurant);
+        } catch (IllegalArgumentException e) {
+            System.err.println("오류: " + e.getMessage());
+        }
+    }
+
+    //식당 정보 업데이트 요청 처리
+    public void updateRestaurant(String name, String newType, String newMenu1, int newPrice1, String newMenu2, int newPrice2) {
+        try {
+            service.updateRestaurant(name, newType, newMenu1, newPrice1, newMenu2, newPrice2);
+        } catch (IllegalArgumentException e) {
+            System.err.println("오류: " + e.getMessage());
+        }
+    }
+
+    // 식당 삭제 요청 처리
+    public void deleteRestaurant(String name) {
+        try {
+            service.deleteRestaurant(name);
+        } catch (IllegalArgumentException e) {
+            System.err.println("오류: " + e.getMessage());
         }
     }
 }
