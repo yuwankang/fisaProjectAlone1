@@ -70,7 +70,7 @@ public class RestaurantService {
         if (restaurants.size()==0) {
             throw new IllegalArgumentException("해당 타입의 식당이름이 비었습니다 ");
         }
-        // 랜덤함수를 생성자 없이 사용하려면 nullpointer에러가 발생하여 new를통해 heap영역에 올렸습니다.
+        // 랜덤함수를 생성자 없이 사용하려면 nullpointer에러가 발생하여 생성자를 불러와 heap영역에 올렸습니다.
         this.random = new Random();
         int randomIndex = random.nextInt(restaurants.size());
         result = restaurants.get(randomIndex);
