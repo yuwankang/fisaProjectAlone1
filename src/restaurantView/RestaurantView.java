@@ -90,7 +90,7 @@ public class RestaurantView {
                     break;
                 case 3:
                     //식당 랜덤 추천
-                    System.out.print("원하는 타입을 고르세요 (한식, 중식, 양식, 일식, 분식): ");
+                    System.out.print("원하는 음식 종류를 고르세요 (한식, 중식, 양식, 일식, 분식): ");
                     String recommendType = scanner.nextLine();  // 요리 종류 입력 받음
                     if (!recommendType.matches("한식|중식|양식|일식|분식")) {
                         //입력된 요리 종류가 올바르지 않은 경우
