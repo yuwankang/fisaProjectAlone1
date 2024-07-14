@@ -59,4 +59,14 @@ public class RestaurantController {
             System.err.println("오류: " + e.getMessage());
         }
     }
+    // 식당 추천
+    public RestaurantDTO recommendByType(String type) {
+        try {
+            return service.recommendRestaurant(type);
+        } catch (IllegalArgumentException e) {
+            System.err.println("오류: " + e.getMessage());
+    // List<Restaurants>타입에서 RestaurantDTO타입으로 다운캐스팅하여 해당 리스트를 반환했습니다.
+            return (RestaurantDTO) List.of();
+        }
+    }
 }

@@ -2,14 +2,12 @@ package resturantService;
 
 import resturantDTO.RestaurantDTO;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //RestaurantService 클래스는 식당 데이터를 관리하는 클래스입니다.
 public class RestaurantService {
     private final Map<String, RestaurantDTO> restaurants = new HashMap<>(); // 레스토랑 데이터 저장소
+    private Random random;
 
     // 새로운 식당 추가
     public void add(RestaurantDTO restaurant) {
@@ -60,5 +58,23 @@ public class RestaurantService {
             throw new IllegalArgumentException("해당 이름의 식당이 존재하지 않습니다: " + name);
         }
         restaurants.remove(name);
+    }
+    // 원하는 종류의 식당 랜덤 추천
+    public RestaurantDTO recommendRestaurant(String type){
+        if (type == null || type.isEmpty()) {
+            throw new IllegalArgumentException("식당이름이 비었습니다 ");
+        }
+        // 해당 데이터가 없을 경우 예외처리했습니다.
+        RestaurantDTO result;
+        List<RestaurantDTO> restaurants = getByType(type);
+        if (restaurants.size()==0) {
+            throw new IllegalArgumentException("해당 타입의 식당이름이 비었습니다 ");
+        }
+        // 랜덤함수를 생성자 없이 사용하려면 nullpointer에러가 발생하여 new를통해 heap영역에 올렸습니다.
+        this.random = new Random();
+        int randomIndex = random.nextInt(restaurants.size());
+        result = restaurants.get(randomIndex);
+
+        return result;
     }
 }
